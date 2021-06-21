@@ -57,7 +57,7 @@ Task FlowBuilder::reduce(
       }
 
       //sf.emplace([&mutex, &next, &r, beg, N, W, &o, C] () mutable {
-      sf.silent_async([&mutex, &next, &r, beg, N, W, &o, C] () mutable {
+      sf.silent_async([&] () mutable {
         
         size_t s0 = next.fetch_add(2, std::memory_order_relaxed);
 
@@ -188,7 +188,7 @@ Task FlowBuilder::transform_reduce(
       }
 
       //sf.emplace([&mutex, &next, &r, beg, N, W, &bop, &uop, C] () mutable {
-      sf.silent_async([&mutex, &next, &r, beg, N, W, &bop, &uop, C] () mutable {
+      sf.silent_async([&] () mutable {
         
         size_t s0 = next.fetch_add(2, std::memory_order_relaxed);
 

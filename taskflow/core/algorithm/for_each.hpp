@@ -52,7 +52,7 @@ Task FlowBuilder::for_each(B&& beg, E&& end, C&& c) {
     for(size_t w=0; w<W; w++) {
 
       //sf.emplace([&next, beg, N, chunk_size, W, &c] () mutable {
-      sf.silent_async([&next, beg, N, chunk_size, W, &c] () mutable {
+      sf.silent_async([&] () mutable {
         
         size_t z = 0;
         size_t p1 = 2 * W * (chunk_size + 1);
@@ -150,7 +150,7 @@ Task FlowBuilder::for_each_index(B&& beg, E&& end, S&& inc, C&& c){
     for(size_t w=0; w<W; w++) {
 
       //sf.emplace([&next, beg, inc, N, chunk_size, W, &c] () mutable {
-      sf.silent_async([&next, beg, inc, N, chunk_size, W, &c] () mutable {
+      sf.silent_async([&] () mutable {
         
         size_t p1 = 2 * W * (chunk_size + 1);
         double p2 = 0.5 / static_cast<double>(W);
